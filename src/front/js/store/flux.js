@@ -43,21 +43,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         sessionStorage.removeItem("token");
       },
 
-	  goPrivate: async ()=>{
-		try{
-			let response = await fetch(apiUrl+"/api/private",{
-			 headers: {Authorization: `Bearer ${sessionStorage.getItem("token")}`}		
-		})
-		let data = await response.json()
-		if (data) {
-          setStore({loggedInAs:data.logged_in_as})
-            console.log("congrats user"+data.logged_in_as+"you have access")
-            return true;
-          }
+	  goPrivate: async ()=> {
+      try{
+        let response = await fetch(apiUrl+"/api/private",{
+        headers: {Authorization: `Bearer ${sessionStorage.getItem("token")}`}		
+      })
+      let data = await response.json()
+      if (data && data != undefined) {
+            setStore({loggedInAs:data.logged_in_as})
+              console.log("congrats user "+data.logged_in_as+" you have access")
+              return true;
+            }
 
-		}catch(error){
-			console.log(error);
-		}
+      }catch(error){
+        console.log(error);
+      }
 		
 	  },
 

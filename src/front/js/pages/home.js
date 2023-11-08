@@ -9,6 +9,7 @@ export const Home = () => {
 	const navigate = useNavigate()
 	return (
 		<div className="text-center mt-5">
+			<h1>Home Page</h1>
 			<button className="btn btn-primary" onClick={async()=>{
 				let result= await actions.goPrivate()
 				if(result){
